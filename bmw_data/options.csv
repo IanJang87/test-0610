@@ -1,0 +1,11 @@
+Option_ID,Option_Name,Category,Price_USD,Availability,Popularity_Score
+OPT001,Panoramic Sunroof,Comfort,1500,True,8.5
+OPT002,Premium Sound System,Audio,2000,True,8.2
+OPT003,Adaptive LED Headlights,Lighting,1800,True,8.8
+OPT004,4-Zone Climate Control,Climate,1200,True,7.5
+OPT005,Leather Upholstery,Interior,2500,True,8.9
+OPT006,Navigation System,Navigation,1600,True,8.1
+OPT007,Harman Kardon System,Audio,3000,True,8.7
+OPT008,Wireless Phone Charging,Technology,800,True,7.8
+OPT009,Parking Assist Plus,Safety,2200,True,8.4
+OPT010,All-Wheel Drive,Drivetrain,3500,True,8.6
