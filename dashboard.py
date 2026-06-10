@@ -19,15 +19,19 @@ st.set_page_config(
 @st.cache_resource
 def check_gemini_api():
     """Gemini API 검증 (Streamlit 재실행 중에도 한 번만 실행)"""
-    # Streamlit Cloud의 secrets.toml 또는 로컬 .env 파일에서 API 키 읽기
+    api_key = None
+
+    # Streamlit Cloud의 secrets 먼저 시도
     try:
-        # Streamlit Cloud에서는 st.secrets 사용
-        api_key = st.secrets.get("GEMINI_API_KEY")
-    except Exception:
+        api_key = st.secrets["GEMINI_API_KEY"]
+        print("[OK] API Key loaded from Streamlit Cloud Secrets")
+    except (KeyError, AttributeError):
         # 로컬 환경에서는 .env 파일 사용
         env_path = Path(__file__).parent / '.env'
         load_dotenv(str(env_path), override=True)
         api_key = os.getenv("GEMINI_API_KEY")
+        if api_key:
+            print("[OK] API Key loaded from .env file")
 
     if api_key and api_key != "your_gemini_api_key_here":
         try:
@@ -41,9 +45,10 @@ def check_gemini_api():
 gemini_configured = check_gemini_api()
 
 # Gemini 모델 읽기 (Streamlit Cloud 또는 로컬)
+gemini_model = "gemini-flash-latest"
 try:
-    gemini_model = st.secrets.get("GEMINI_MODEL", "gemini-flash-latest")
-except Exception:
+    gemini_model = st.secrets["GEMINI_MODEL"]
+except (KeyError, AttributeError):
     gemini_model = os.getenv("GEMINI_MODEL", "gemini-flash-latest")
 
 st.title("🚗 BMW 상품정보 대시보드")
