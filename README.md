@@ -74,11 +74,53 @@ streamlit run dashboard.py
 | `GEMINI_API_KEY` | Gemini API 키 | ✅ 필수 |
 | `GEMINI_MODEL` | 사용할 Gemini 모델 | ❌ 선택 (기본값: gemini-flash-latest) |
 
+## ☁️ Streamlit Cloud 배포
+
+### 1. GitHub에 푸시
+
+```bash
+git push origin main
+```
+
+### 2. Streamlit Cloud에서 배포
+
+1. [Streamlit Community Cloud](https://streamlit.io/cloud)에 로그인
+2. "New App" 클릭
+3. GitHub 저장소 선택: `IanJang87/test-0610`
+4. 메인 파일 경로: `dashboard.py`
+5. "Deploy" 클릭
+
+### 3. Secrets 설정 (중요!)
+
+배포 후 앱 설정에서:
+
+1. 톱니바퀴(⚙️) 아이콘 → "Secrets" 클릭
+2. 다음 내용 입력:
+
+```toml
+GEMINI_API_KEY = "your_actual_gemini_api_key_here"
+GEMINI_MODEL = "gemini-flash-latest"
+```
+
+3. "Save" 클릭
+
+### 4. 앱 접속
+
+배포 완료 후 자동으로 제공되는 URL에서 앱에 접속할 수 있습니다.
+
+### ⚠️ Secrets 관리
+
+- 🔒 **Secrets은 암호화되어 저장됨**
+- 🚫 `.env` 파일과 `secrets.toml`은 GitHub에 업로드되지 않음
+- ✅ Streamlit Cloud의 웹 인터페이스에서만 설정
+
 ## ⚠️ 중요 사항
 
 - `.env` 파일은 절대 Git에 커밋하지 마세요 (API 키 노출 위험)
+- `.streamlit/secrets.toml`은 로컬 개발용이며 GitHub에 업로드되지 않습니다
 - 본인의 API 키만 사용하세요
 - 무료 API 키는 사용량 제한이 있을 수 있습니다
+- Streamlit Cloud의 Secrets은 배포 후 반드시 설정하세요
 
 ## 📄 라이선스
 
